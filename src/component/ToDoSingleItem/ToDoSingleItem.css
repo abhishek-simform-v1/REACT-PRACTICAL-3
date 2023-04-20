@@ -1,0 +1,36 @@
+.item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  color: #666;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.4s;
+}
+.notdone {
+opacity: 0.6;
+  color: #666;
+
+}
+.item:hover {
+  scale: 0.98;
+}
+
+.closeBtn {
+  background-origin: revert;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  outline: none;
+  border: none;
+  width: 40px;
+  height: 40px;
+}
+.donebtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid #f0efe9;
+  background-color: #fff;
+}

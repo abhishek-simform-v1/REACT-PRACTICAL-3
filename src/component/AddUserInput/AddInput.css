@@ -1,0 +1,47 @@
+.addButton {
+  position: absolute;
+  border: none;
+  background-color: #50e3a4;
+  padding: 30px;
+  bottom: -18%;
+
+  border-radius: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.34s;
+}
+.addButton svg {
+  width: 30px;
+  height: 30px;
+  color: #e0e0e0;
+}
+.addButton:hover {
+  box-shadow: 0 5px 215px #50e3a4;
+}
+/* inputlistitem
+ */
+.inputlistitem {
+  position: absolute;
+  bottom: 1%;
+  padding: 1em 1.5em;
+  border: none;
+  outline: none;
+  font-weight: 500;
+  font-family: inherit;
+  left: 50%;
+  background-color: #ecfff4;
+  width: 80%;
+  transform: translate(-50%, -50%);
+  border-radius: 65px;
+}
+.hideform {
+  display: none;
+  position: relative;
+}
+.errorMessage {
+  color: #ff8383;
+  position: absolute;
+  font-size: 14px;
+  bottom: 1%;
+  left: 14%;
+}

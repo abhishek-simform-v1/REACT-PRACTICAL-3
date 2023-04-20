@@ -1,16 +1,13 @@
-
-import './App.css'
-import Card from './component/Card'
+import "./App.css";
+import DayAndDate from "./component/DateAndTime/DayAndDate";
+import Card from "./component/UI/Card";
 
 function App() {
-  
-  // console.log(day,today,month,year)
-
   return (
     <div className="App">
-    <Card/>
+      <Card />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

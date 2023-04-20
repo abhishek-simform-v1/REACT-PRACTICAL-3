@@ -1,0 +1,9 @@
+.card {
+  background-color: #fff;
+  max-height: 550px;
+  max-width: 350px;
+  width: 100vw;
+  height: 100vh;
+  padding: 40px;
+  position: relative;
+}

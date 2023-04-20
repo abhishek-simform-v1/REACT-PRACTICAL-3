@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:5173/ -->
+<html lang="en"><link type="text/css" rel="stylesheet" id="dark-mode-custom-link"><link type="text/css" rel="stylesheet" id="dark-mode-general-link"><style lang="en" type="text/css" id="dark-mode-custom-style"></style><style lang="en" type="text/css" id="dark-mode-native-style"></style><style lang="en" type="text/css" id="dark-mode-native-sheet"></style><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="module">
+import RefreshRuntime from "/@react-refresh"
+RefreshRuntime.injectIntoGlobalHook(window)
+window.$RefreshReg$ = () => {}
+window.$RefreshSig$ = () => (type) => type
+window.__vite_plugin_react_preamble_installed__ = true
+</script>
+
+    <script type="module" src="./Vite + React + TS_files/client"></script>
+
+    
+    <link rel="icon" type="image/svg+xml" href="http://localhost:5173/vite.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vite + React + TS</title>
+  <style type="text/css" data-vite-dev-id="/home/abhishek/simform-tasks/lms-task/to-do-list (working)/src/App.css">@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+body{
+  background-color: #f0efe9;
+}
+.App{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Poppins';
+  height: 100vh;
+}
+button{
+  cursor: pointer;
+  background-color: #fff0;
+}
+.hide{
+  opacity: 0;
+  pointer-events: none;
+  visibility: none;
+}</style><style type="text/css" data-vite-dev-id="/home/abhishek/simform-tasks/lms-task/to-do-list (working)/src/component/DateAndTime/DayAndDate.css">/* dayanddate */
+.DayAndMonthAndYearAndCDay {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.DayAndMonthAndYear {
+  display: flex;
+  gap: 0.4em;
+  align-items: center;
+  justify-content: center;
+}
+.DayAndMonth {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.2rem;
+}
+.day {
+  color: #666;
+  font-size: 35px;
+  font-weight: 600;
+}
+.month {
+  color: #888;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+}
+.year {
+  line-height: 1;
+  color: #999;
+  font-weight: 500;
+
+  font-size: 0.83rem;
+}
+.today {
+  font-size: 0.8rem;
+  color: #999;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}</style><style type="text/css" data-vite-dev-id="/home/abhishek/simform-tasks/lms-task/to-do-list (working)/src/component/UI/card.css">.card {
+  background-color: #fff;
+  max-height: 550px;
+  max-width: 350px;
+  width: 100vw;
+  height: 100vh;
+  padding: 40px;
+  position: relative;
+}
+</style><style type="text/css" data-vite-dev-id="/home/abhishek/simform-tasks/lms-task/to-do-list (working)/src/component/AddUserInput/AddInput.css">.addButton {
+  position: absolute;
+  border: none;
+  background-color: #50e3a4;
+  padding: 30px;
+  bottom: -18%;
+
+  border-radius: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.34s;
+}
+.addButton svg {
+  width: 30px;
+  height: 30px;
+  color: #e0e0e0;
+}
+.addButton:hover {
+  box-shadow: 0 5px 215px #50e3a4;
+}
+/* inputlistitem
+ */
+.inputlistitem {
+  position: absolute;
+  bottom: 0%;
+  padding: 1.5em;
+  border: none;
+  outline: none;
+  font-weight: 500;
+  font-family: inherit;
+  left: 50%;
+  background-color: #f0efe9;
+  width: 80%;
+  transform: translate(-50%, -50%);
+
+  border-radius: 65px;
+}
+.hideform{
+  display: none;
+  position: relative;
+}
+.errorMessage{
+  color: #ff8383;
+  position: absolute;
+  font-size: 14px;
+  bottom: 1%;
+left: 20%;
+}</style><style type="text/css" data-vite-dev-id="/home/abhishek/simform-tasks/lms-task/to-do-list (working)/src/component/ToDoSingleItem/ToDoSingleItem.css">.single-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  color: #444;
+}
+
+.closeBtn {
+  background: url(./../assets/checkbox-1326be9e.ico);
+  background-origin: revert;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  outline: none;
+  border: none;
+  width: 40px;
+  height: 40px;
+}
+.donebtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid #f0efe9;
+  background-color: #fff;
+}
+</style><style type="text/css" data-vite-dev-id="/home/abhishek/simform-tasks/lms-task/to-do-list (working)/src/component/ToDoItemList/ToDoList.css">
+  .listitemContainer {
+    overflow: auto;
+    display: flex;
+    height: 350px;
+    padding: 1em 0.2em 0 0 ;
+    flex-direction: column;
+    gap: 0.8em;
+    scrollbar-width: thin;
+    -webkit-box-shadow: inset 0px -200px 24px -200px rgba(209,255,234,1);
+-moz-box-shadow: inset 0px -200px 24px -200px rgba(209,255,234,1);
+box-shadow: inset 0px -200px 24px -200px rgba(209,255,234,1);
+  }
+  .listitemContainer::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .listitemContainer::-webkit-scrollbar-track {
+    background-color: #e4e4e4;
+    border-radius: 100px;
+  }
+  
+  .listitemContainer::-webkit-scrollbar-thumb {
+    background-color: #50e3a39d;
+    border-radius: 100px;
+  }
+  .closeBtn {
+    background: url(./../assets/checkbox-1326be9e.ico);
+    background-origin: revert;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  
+    outline: none;
+    border: none;
+    width: 23px;
+    height: 23px;
+  }
+  .donebtn {
+    width: 23px;
+    height: 23px;
+    border-radius: 50%;
+    border: 3px solid #f0efe9;
+    background-color: #fff;
+  }
+  </style><style type="text/css" data-vite-dev-id="/home/abhishek/simform-tasks/lms-task/to-do-list (working)/src/index.css">button {
+  background-color: #fff;
+  border: none;
+}
+</style></head>
+  <body>
+    <div id="root"><div class="App"><div class="card"><div class="DayAndMonthAndYearAndCDay"><div class="DayAndMonthAndYear"><div class="day">27</div><div class="DayAndMonth"><div class="month">Apr</div><div class="year">2023</div></div></div><div class="today">Thursday</div></div><div><div><ul class="listitemContainer "><li class="single-item"><p class="completedTask">string</p><button><img class="closeBtn" src="./Vite + React + TS_files/checkbox-1326be9e.ico" alt="done"></button></li><li class="single-item"><p class="inCompletedTask">string</p><button><img class="closeBtn" src="./Vite + React + TS_files/blanck_icon-972c7eb8.png" alt="done"></button></li><li class="single-item"><p class="inCompletedTask">sfsfs</p><button><img class="closeBtn" src="./Vite + React + TS_files/blanck_icon-972c7eb8.png" alt="done"></button></li><li class="single-item"><p class="inCompletedTask">sfedgfdhthb h</p><button><img class="closeBtn" src="./Vite + React + TS_files/blanck_icon-972c7eb8.png" alt="done"></button></li><li class="single-item"><p class="inCompletedTask">yj hhhyt</p><button><img class="closeBtn" src="./Vite + React + TS_files/blanck_icon-972c7eb8.png" alt="done"></button></li><li class="single-item"><p class="inCompletedTask">nnfn hsv</p><button><img class="closeBtn" src="./Vite + React + TS_files/blanck_icon-972c7eb8.png" alt="done"></button></li></ul></div><form class="hidef"><input type="text" class="inputlistitem" maxlength="15" value=""><p class="errorMessage"></p></form><button class="addButton"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" class="svg-inline--fa fa-plus " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"></path></svg></button></div></div></div></div>
+    <script type="module" src="./Vite + React + TS_files/main.tsx"></script>
+  
+
+</body></html>

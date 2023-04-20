@@ -5,6 +5,9 @@
   box-sizing: border-box;
 
 }
+.swal2-title {
+  font-family: "Poppins"
+}
 body{
   background-color: #f0efe9;
 }
@@ -17,4 +20,10 @@ body{
 }
 button{
   cursor: pointer;
+  background-color: #fff0;
+}
+.hide{
+  opacity: 0;
+  pointer-events: none;
+  visibility: none;
 }
