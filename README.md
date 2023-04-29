@@ -99,30 +99,93 @@ TO-DO-LIST(WORKING)/
 │                   ├── ToDoList.tsx
 │                   ├── ToDoList.css
 
-DayAndDate
+```
 
-![Image 1] (./src/assets/datecomponent.png)
+# DayAndDate shows Current Day and time which is imported from
 
+![Image 1](./src/assets/datecomponent.png)
+
+# ToDoList shows Current Data
+
+## if there is nothing to show in to list then this Screen will show
+
+![Image2 2](./src/assets/empteylistContainer.png)
+
+## if there is something to show in to list then this Screen will show
+
+![Image 1](./src/assets/filledlistcontainer.png)
+
+```
+
+```
+
+# 4. TaskList\*\*
+
+```
+- `TaskList` contains the list of tasks and the checkbox.
+- The tasks that are completed are marked as checked.
+TO-DO-LIST(WORKING)/
+├── src/
+|   ├──component/
+|          ├── AddUserInput/
+│                   ├── AddInput.tsx
+│                   ├── AddInput.css
+```
+
+## for adding new task
+
+![Image 1](./src/assets/inputField.png)
+
+```
 - `Card` also has Current Day and time which is imported from
 TO-DO-LIST(WORKING)/
 ├── src/
 |   ├──hooks/
 │          ├── usegetTime.tsx
+```
 
+# 5. AddTaskButton\*\*
 
-**3. CardHeader**
-
-- `CardHeader` contains the the details regarding date, time and the day.
-
-**4. TaskList**
-
-- `TaskList` contains the list of tasks and the checkbox.
-- The tasks that are completed are marked as checked.
-
-**5. AddTaskButton**
-
+```
 - `AddTaskButton` contains the button using which we can add new tasks in the todo list.
 - Since the data is static here, currently only the tasks that are present in the data can be seen in the list.
 
+```
+
+# TO-DO-APP
+
+This is a simple project that uses Vite as its build tool.
+
+## Installation
+
+To install the project, clone this repository to your local machine:
+
+bash
+Copy code
+git clone https://github.com/abhishek-simform-v1/REACT-PRACTICAL-3.git
+Then, navigate to the project directory and install the dependencies:
+
+## npm install
+
+### Usage
+
+To start the development server, run the following command:
+
+npm start
+
+This will start the server and open the project in your default browser. You can now start editing the files in the src directory, and the browser will automatically reload whenever you make changes.
+
+## To build the project for production, run the following command:
+
+npm run build
+This will generate a production-ready build in the dist directory.
+
+# Contributing
+
+If you would like to contribute to this project, please fork the repository and submit a pull request.
+live Link
 link:- https://to-do-list-simform.netlify.app/
+
+```
+
 ```
