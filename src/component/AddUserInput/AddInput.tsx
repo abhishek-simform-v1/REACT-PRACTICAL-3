@@ -114,7 +114,7 @@ const AddInput = () => {
           value={inputValue}
           ref={inputRef}
           onChange={handleInput}
-          maxLength={12}
+          maxLength={28}
         />
 
         <p className="errorMessage">{error}</p>
