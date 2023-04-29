@@ -1,49 +1,48 @@
+.listitemContainer {
+  overflow: auto;
+  overflow-x: hidden;
+  display: flex;
+  height: 410px;
+  padding: 1.5em 0.2em 1em 0;
+  flex-direction: column;
+  gap: 1.8em;
+  scrollbar-width: thin;
+  -webkit-box-shadow: inset 0px -200px 24px -200px rgba(209, 255, 234, 1);
+  -moz-box-shadow: inset 0px -200px 24px -200px rgba(209, 255, 234, 1);
+  box-shadow: inset 0px -200px 24px -200px rgba(209, 255, 234, 1);
+}
+.listitemContainer::-webkit-scrollbar {
+  width: 6px;
+}
 
-  .listitemContainer {
-    overflow: auto;
-    overflow-x: hidden;
-    display: flex;
-    height: 350px;
-    padding: 1em 0.2em 0 0 ;
-    flex-direction: column;
-    gap: 0.8em;
-    scrollbar-width: thin;
-    -webkit-box-shadow: inset 0px -200px 24px -200px rgba(209,255,234,1);
--moz-box-shadow: inset 0px -200px 24px -200px rgba(209,255,234,1);
-box-shadow: inset 0px -200px 24px -200px rgba(209,255,234,1);
-  }
-  .listitemContainer::-webkit-scrollbar {
-    width: 6px;
-  }
-  
-  .listitemContainer::-webkit-scrollbar-track {
-    background-color: #e4e4e4;
-    border-radius: 100px;
-  }
-  
-  .listitemContainer::-webkit-scrollbar-thumb {
-    background-color: #50e3a39d;
-    border-radius: 100px;
-  }
-  .closeBtn {
-    background-origin: revert;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-  
-    outline: none;
-    border: none;
-    width: 23px;
-    height: 23px;
-  }
-  .donebtn {
-    width: 23px;
-    height: 23px;
-    border-radius: 50%;
-    border: 3px solid #f0efe9;
-    background-color: #fff;
-  }
-  .addTaskImge{
-    width: 250px;
-    height: 250px;
-  }
+.listitemContainer::-webkit-scrollbar-track {
+  background-color: #e4e4e4;
+  border-radius: 100px;
+}
+
+.listitemContainer::-webkit-scrollbar-thumb {
+  background-color: #50e3a39d;
+  border-radius: 100px;
+}
+.closeBtn {
+  background-origin: revert;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+  outline: none;
+  border: none;
+  width: 23px;
+  height: 23px;
+}
+.donebtn {
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  border: 3px solid #f0efe9;
+  background-color: #fff;
+}
+.addTaskImge {
+  width: 250px;
+  height: 250px;
+}

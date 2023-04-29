@@ -1,6 +1,6 @@
-import "./App.css";
-import DayAndDate from "./component/DateAndTime/DayAndDate";
-import Card from "./component/UI/Card";
+import './App.css';
+import DayAndDate from './component/DateAndTime/DayAndDate';
+import Card from './component/UI/Card';
 
 function App() {
   return (

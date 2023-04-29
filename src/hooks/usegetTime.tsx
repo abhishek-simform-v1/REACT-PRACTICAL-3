@@ -1,4 +1,7 @@
-import { useState, useEffect } from "react";
+// Importing React hooks for state and effect
+import { useState, useEffect } from 'react';
+
+// Defining an interface to describe the shape of the data object returned by the hook
 export interface GetTime {
   getYear: number;
   getMonth: string;
@@ -10,13 +13,16 @@ export interface GetTime {
   getMilliseconds: number;
   getTimeStamp: number;
 }
+
+// Defining a custom hook named usegetTime
 const usegetTime = () => {
+  // Initializing a state variable with an empty array
   const [data, setData] = useState<GetTime[] | []>([
     {
       getYear: 0,
-      getMonth: "",
+      getMonth: '',
       getDate: 0,
-      getDay: "",
+      getDay: '',
       getHours: 0,
       getMinutes: 0,
       getSeconds: 0,
@@ -24,29 +30,33 @@ const usegetTime = () => {
       getTimeStamp: 0,
     },
   ]);
+
+  // Defining arrays for days of the week and months of the year
   const daysOfWeek = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
   ];
   const monthsOfYear = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
   ];
+
+  // Using the useEffect hook to update the state variable with the current date and time
   useEffect(() => {
     let timer = setTimeout(() => {
       const date = new Date();
@@ -65,9 +75,13 @@ const usegetTime = () => {
       ]);
     }, 1);
 
+    // Clearing the timer to prevent memory leaks
     return () => clearTimeout(timer);
   });
 
+  // Returning the state variable
   return data;
 };
+
+// Exporting the custom hook
 export default usegetTime;

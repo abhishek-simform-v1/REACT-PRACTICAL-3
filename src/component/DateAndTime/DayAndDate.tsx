@@ -1,11 +1,12 @@
-import { ReactNode } from "react";
-import usegetTime from "../../hooks/usegetTime";
-import "./DayAndDate.css";
+import usegetTime from '../../hooks/usegetTime'; // importing a custom hook
+import './DayAndDate.css'; // importing a CSS file for styling
 
 export default function DayAndDate() {
-  let CurrentDate = usegetTime();
+  // defining a functional component called "DayAndDate"
+  let CurrentDate = usegetTime(); // using the custom hook to get the current date and time
 
   const [getDate, getDay, getMonth, getYear] = [
+    // destructuring the date and time components from the hook
     CurrentDate[0].getDate,
     CurrentDate[0].getDay,
     CurrentDate[0].getMonth,
@@ -14,14 +15,20 @@ export default function DayAndDate() {
 
   return (
     <div className="DayAndMonthAndYearAndCDay">
+      {' '}
+      {/* a container for the date and day */}
       <div className="DayAndMonthAndYear">
-        <div className="day">{getDate}</div>
+        {' '}
+        {/* a container for the day, month, and year */}
+        <div className="day">{getDate}</div> {/* displaying the day */}
         <div className="DayAndMonth">
-          <div className="month">{getMonth}</div>
-          <div className="year">{getYear}</div>
+          {' '}
+          {/* a container for the month and year */}
+          <div className="month">{getMonth}</div> {/* displaying the month */}
+          <div className="year">{getYear}</div> {/* displaying the year */}
         </div>
       </div>
-      <div className="today">{getDay}</div>
+      <div className="today">{getDay}</div> {/* displaying the current day */}
     </div>
   );
 }
