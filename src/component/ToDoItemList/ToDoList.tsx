@@ -1,16 +1,15 @@
-import { useEffect, useRef, memo, useContext } from 'react'; // Importing necessary libraries and hooks
-import { TodoContext } from '../../context/Context'; // Importing TodoContext from Context file
-import AddInput from '../AddUserInput/AddInput'; // Importing AddInput component
-import ToDoSingleItem from '../ToDoSingleItem/ToDoSingleItem'; // Importing ToDoSingleItem component
-import addTask from '../../assets/addTask.svg'; // Importing addTask image
-import { AnimatePresence, motion } from 'framer-motion'; // Importing motion components from Framer Motion
-import './ToDoList.css'; // Importing ToDoList styles
-
+import { useEffect, useRef, memo, useContext, useState } from "react"; // Importing necessary libraries and hooks
+import { TodoContext } from "../../context/Context"; // Importing TodoContext from Context file
+import AddInput from "../AddUserInput/AddInput"; // Importing AddInput component
+import ToDoSingleItem from "../ToDoSingleItem/ToDoSingleItem"; // Importing ToDoSingleItem component
+import addTask from "../../assets/addTask.svg"; // Importing addTask image
+import { AnimatePresence, motion } from "framer-motion"; // Importing motion components from Framer Motion
+import "./ToDoList.css"; // Importing ToDoList styles
+import { v4 as uuidv4 } from "uuid";
 const ToDoList = () => {
   // Declaring ToDoList component
   const { data } = useContext(TodoContext); // Getting the data from TodoContext
   const listRef = useRef<HTMLUListElement>(null); // Creating a ref for list
-
   interface DataItem {
     // Defining the DataItem interface
     id: number;
@@ -29,38 +28,31 @@ const ToDoList = () => {
 
   return (
     <AnimatePresence>
-      {' '}
-      // Using AnimatePresence component
+      {" "}
+      ...
       <ul ref={listRef} className="listitemContainer">
-        {' '}
-        {/* // Creating unordered list and applying the listRef */}
-        {data && data.length !== 0 ? ( // Checking if data exists and is not empty
-          data.map(
-            (
-              item: DataItem // Mapping through the data and returning ToDoSingleItem component for each item
-            ) => (
-              <motion.div // Using motion.div to apply animation on ToDoSingleItem component
-                key={item.id} // Setting the key as item id
-                initial={{ x: -100, opacity: 0 }} // Defining initial styles for animation
-                animate={{ x: 0, opacity: 1 }} // Defining animation styles
-                exit={{ x: 100, opacity: 0 }} // Defining exit styles for animation
-                transition={{ type: 'spring', stiffness: 100 }} // Defining the transition type and stiffness
-              >
-                <ToDoSingleItem currentGivenData={item} />
-                {/* // Passing item as props to ToDoSingleItem component */}
-              </motion.div>
-            )
-          )
+        {data && data.length !== 0 ? (
+          data.map((item: DataItem) => (
+            <motion.li
+              style={{ listStyle: "none" }}
+              key={item.id} // generate a unique key using uuid
+              initial={{ x: -100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: 100, opacity: 0 }}
+              transition={{ type: "spring", stiffness: 100 }}
+            >
+              <ToDoSingleItem currentGivenData={item} />
+            </motion.li>
+          ))
         ) : (
-          // If data does not exist or is empty, show addTask image
-          <motion.div // Using motion.div to apply animation on addTask image
-            key="addTask" // Setting the key as "addTask"
-            initial={{ scale: 0 }} // Defining initial styles for animation
-            animate={{ scale: 1 }} // Defining animation styles
-            transition={{ type: 'spring', stiffness: 100 }} // Defining the transition type and stiffness
+          <motion.div
+            key="addTask"
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ type: "spring", stiffness: 100 }}
           >
+            <p className="nothingMessage">Add new Tasks !!!</p>
             <img src={addTask} alt="Add task" className="addTaskImge" />
-            {/* //Adding the addTask image */}
           </motion.div>
         )}
       </ul>

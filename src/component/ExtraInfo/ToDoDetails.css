@@ -1,0 +1,15 @@
+.ExtraDetail{
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+}
+.completedItem{
+    font-weight: 600;
+    color: #50e3a4;
+}
+.inCompletedItem{
+    font-weight: 600;
+
+    color: #ff8383;
+
+}

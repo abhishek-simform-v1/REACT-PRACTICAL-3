@@ -6,3 +6,7 @@
   padding: 40px;
   position: relative;
 }
+.mainContent{
+  display: flex;
+  flex-direction: column;
+}

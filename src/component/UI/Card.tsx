@@ -1,13 +1,14 @@
 // Importing the "DayAndDate" component and the "card.css" file
-import DayAndDate from '../DateAndTime/DayAndDate';
-import './card.css';
+import DayAndDate from "../DateAndTime/DayAndDate";
+import "./card.css";
 
 // Importing the "CardComponent" and "ToDoList" components
-import CardComponent from './../UI/CardComponent';
-import ToDoList from '../ToDoItemList/ToDoList';
+import CardComponent from "./../UI/CardComponent";
+import ToDoList from "../ToDoItemList/ToDoList";
 
 // Importing the "Context" component
-import Context from '../../context/Context';
+import Context from "../../context/Context";
+import ToDoDetails from "../ExtraInfo/ToDoDetails";
 
 // Defining the "Card" component
 function Card() {
@@ -15,10 +16,13 @@ function Card() {
   // Wrapped inside the "Context" component
   return (
     <Context>
-      <CardComponent className="card">
-        <DayAndDate />
-        <ToDoList />
-      </CardComponent>
+      <div className="mainContent">
+        <ToDoDetails />
+        <CardComponent className="card">
+          <DayAndDate />
+          <ToDoList />
+        </CardComponent>
+      </div>
     </Context>
   );
 }
