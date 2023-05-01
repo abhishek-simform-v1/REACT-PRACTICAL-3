@@ -5,7 +5,6 @@ const ToDoDetails = () => {
   const { data } = useContext(TodoContext);
   const completedItem = data.filter((data1) => data1.completed === 1);
   const incompletedItem = data.filter((data1) => data1.completed === 0);
-  console.log(completedItem.length);
   return (
     <div className="ExtraDetail">
       <p className="completedItem">
