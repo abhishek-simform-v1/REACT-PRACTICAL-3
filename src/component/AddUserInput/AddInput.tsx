@@ -140,7 +140,6 @@ const AddInput = () => {
           value={inputValue}
           ref={inputRef}
           onChange={handleInput}
-          maxLength={25}
         />
 
         <p className="errorMessage">{error}</p>
@@ -169,4 +168,4 @@ const AddInput = () => {
   );
 };
 
-export default AddInput;
+export default React.memo(AddInput);

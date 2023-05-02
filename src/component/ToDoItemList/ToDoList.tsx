@@ -1,4 +1,4 @@
-import { useEffect, useRef, memo, useContext, useState } from "react"; // Importing necessary libraries and hooks
+import { useEffect, useRef, useContext } from "react"; // Importing necessary libraries and hooks
 import { TodoContext } from "../../context/Context"; // Importing TodoContext from Context file
 import AddInput from "../AddUserInput/AddInput"; // Importing AddInput component
 import ToDoSingleItem from "../ToDoSingleItem/ToDoSingleItem"; // Importing ToDoSingleItem component
@@ -61,4 +61,4 @@ const ToDoList = () => {
   );
 };
 
-export default memo(ToDoList); // Exporting ToDoList component wrapped inside memo() for performance optimization
+export default ToDoList;

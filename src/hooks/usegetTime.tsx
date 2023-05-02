@@ -1,5 +1,5 @@
 // Importing React hooks for state and effect
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from "react";
 
 // Defining an interface to describe the shape of the data object returned by the hook
 export interface GetTime {
@@ -20,9 +20,9 @@ const usegetTime = () => {
   const [data, setData] = useState<GetTime[] | []>([
     {
       getYear: 0,
-      getMonth: '',
+      getMonth: "",
       getDate: 0,
-      getDay: '',
+      getDay: "",
       getHours: 0,
       getMinutes: 0,
       getSeconds: 0,
@@ -33,27 +33,27 @@ const usegetTime = () => {
 
   // Defining arrays for days of the week and months of the year
   const daysOfWeek = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
   ];
   const monthsOfYear = [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
   ];
 
   // Using the useEffect hook to update the state variable with the current date and time

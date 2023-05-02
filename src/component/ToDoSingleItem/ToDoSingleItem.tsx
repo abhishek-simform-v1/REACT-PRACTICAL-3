@@ -1,11 +1,11 @@
 // Import necessary dependencies and assets
-import './ToDoSingleItem.css';
-import done from './../../assets/complete.png';
-import notDone from './../../assets/notcomplete.png';
-import deleteImg from './../../assets/delete.png';
-import { useContext, useEffect, useRef, useState } from 'react';
-import { TodoContext } from '../../context/Context';
-import { Toast } from '../AddUserInput/AddInput';
+import "./ToDoSingleItem.css";
+import done from "./../../assets/complete.png";
+import notDone from "./../../assets/notcomplete.png";
+import deleteImg from "./../../assets/delete.png";
+import { useContext, useEffect, useRef, useState } from "react";
+import { TodoContext } from "../../context/Context";
+import { Toast } from "../AddUserInput/AddInput";
 
 // Define the structure of each item in the to-do list
 interface DataItem {
@@ -71,8 +71,8 @@ task that was deleted. The modified array is stored in local storage. */
 
   const handleDelete = () => {
     Toast.fire({
-      icon: 'error',
-      title: 'Task Deleted !!!',
+      icon: "error",
+      title: "Task Deleted !!!",
     });
 
     // Find the index of the task to be deleted
@@ -100,10 +100,14 @@ task that was deleted. The modified array is stored in local storage. */
     <div>
       <li
         key={currentGivenData.id}
-        className={completed === 1 ? 'item notdone' : 'item '}
+        className={completed === 1 ? "item notdone" : "item "}
         onClick={handleCompleted}
       >
-        <p className={completed ? 'completedTask' : 'inCompletedTask'}>
+        <p
+          className={
+            completed ? "completedTask widthRest" : "inCompletedTask widthRest"
+          }
+        >
           {currentGivenData.task}
         </p>
         <div>
