@@ -58,6 +58,7 @@ const AddInput = () => {
     setInputValue(e.target.value);
     // Check if the input value is less than or equal to 10 characters and if there is any existing data, show an error message
     if (inputValue.length <= 10) {
+      console.log("write more");
       if (data.length !== 0) {
         setError(" Write 'DELETE' to delete every thing!!!");
       }
@@ -140,6 +141,7 @@ const AddInput = () => {
           value={inputValue}
           ref={inputRef}
           onChange={handleInput}
+          maxLength={25}
         />
 
         <p className="errorMessage">{error}</p>
@@ -168,4 +170,4 @@ const AddInput = () => {
   );
 };
 
-export default React.memo(AddInput);
+export default AddInput;

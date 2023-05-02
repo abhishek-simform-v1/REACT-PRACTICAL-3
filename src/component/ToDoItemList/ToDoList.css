@@ -7,9 +7,7 @@
   flex-direction: column;
   gap: 1.8em;
   scrollbar-width: thin;
-  -webkit-box-shadow: inset 0px -200px 24px -200px rgba(209, 255, 234, 1);
-  -moz-box-shadow: inset 0px -200px 24px -200px rgba(209, 255, 234, 1);
-  box-shadow: inset 0px -200px 24px -200px rgba(209, 255, 234, 1);
+ 
 }
 .listitemContainer::-webkit-scrollbar {
   width: 6px;
