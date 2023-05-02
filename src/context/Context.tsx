@@ -28,11 +28,10 @@ export const TodoContext = createContext<{
 // Function to check if the to-do items in local storage have expired
 function checkSessionExpiry(storageKey: string) {
   const data = JSON.parse(localStorage.getItem(storageKey) || "[]"); // Parsing the data from local storage
-  let currentDate = new Date().getDate(); // Getting the current date
 
   // Checking each item in the data to see if it was created on the current date
   data.map((items: DataItem) => {
-    if (currentDate !== items.createdAt) {
+    if (new Date().getDate() !== items.createdAt) {
       localStorage.removeItem(storageKey); // Removing the data from local storage if it has expired
     }
   });
