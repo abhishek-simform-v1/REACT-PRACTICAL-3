@@ -25,19 +25,6 @@ export const TodoContext = createContext<{
   setData: () => {},
 });
 
-// Function to check if the to-do items in local storage have expired
-function checkSessionExpiry(storageKey: string) {
-  const data = JSON.parse(localStorage.getItem(storageKey) || "[]"); // Parsing the data from local storage
-
-  // Checking each item in the data to see if it was created on the current date
-  data.map((items: DataItem) => {
-    if (new Date().getDate() !== items.createdAt) {
-      localStorage.removeItem(storageKey); // Removing the data from local storage if it has expired
-    }
-  });
-  return data;
-}
-
 // Defining the "Context" component
 const Context = ({ children }: Props) => {
   // Declaring the "data" and "setData" state variables using useState hook and initializing it with the data from local storage or an empty array
@@ -47,8 +34,21 @@ const Context = ({ children }: Props) => {
   useEffect(() => {
     localStorage.setItem("data", JSON.stringify(data));
   }, [data]);
+  // Function to check if the to-do items in local storage have expired
 
   // Function to initialize the data state variable
+  function checkSessionExpiry(storageKey: string) {
+    const data = JSON.parse(localStorage.getItem(storageKey) || "[]"); // Parsing the data from local storage
+
+    // Checking each item in the data to see if it was created on the current date
+    data.map((items: DataItem) => {
+      if (new Date().getDate() !== items.createdAt) {
+        localStorage.removeItem(storageKey); // Removing the data from local storage if it has expired
+      }
+    });
+    return data;
+  }
+
   function init() {
     const localdata = checkSessionExpiry("data");
 
