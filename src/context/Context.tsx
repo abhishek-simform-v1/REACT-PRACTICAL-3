@@ -39,10 +39,10 @@ const Context = ({ children }: Props) => {
   // Function to initialize the data state variable
   function checkSessionExpiry(storageKey: string) {
     const data = JSON.parse(localStorage.getItem(storageKey) || "[]"); // Parsing the data from local storage
-
+    let currentDate = new Date().getDate();
     // Checking each item in the data to see if it was created on the current date
     data.map((items: DataItem) => {
-      if (new Date().getDate() !== items.createdAt) {
+      if (currentDate !== items.createdAt) {
         localStorage.removeItem(storageKey); // Removing the data from local storage if it has expired
       }
     });
