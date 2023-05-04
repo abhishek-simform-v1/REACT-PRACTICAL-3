@@ -1,9 +1,9 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { TodoContext } from "../../context/Context";
-import "./AddInput.css";
-import Swal from "sweetalert2";
-import usegetTime from "../../hooks/usegetTime";
-
+import React, { useContext, useEffect, useRef, useState } from 'react';
+import { TodoContext } from '../../context/Context';
+import './AddInput.css';
+import Swal from 'sweetalert2';
+import usegetTime from '../../hooks/usegetTime';
+import { useSelector, useDispatch } from 'react-redux';
 interface DataItem {
   id: number;
   task: string;
@@ -14,26 +14,28 @@ interface DataItem {
 // Define a Toast notification using SweetAlert library with specific configurations
 export const Toast = Swal.mixin({
   toast: true,
-  position: "bottom-start",
+  position: 'bottom-start',
   showConfirmButton: false,
   timer: 3000,
   timerProgressBar: true,
   didOpen: (toast) => {
     // Pause the timer when the user hovers over the notification
-    toast.addEventListener("mouseenter", Swal.stopTimer);
+    toast.addEventListener('mouseenter', Swal.stopTimer);
     // Resume the timer when the user leaves the notification
-    toast.addEventListener("mouseleave", Swal.resumeTimer);
+    toast.addEventListener('mouseleave', Swal.resumeTimer);
   },
 });
 
 // Define a functional component for an input field with add functionality
 const AddInput = () => {
+  const ToDo = useSelector((state: RootState) => state.ToDo);
+  const dispatch = useDispatch();
   // Define the state variables for the input field, whether the user wants to add an item or not, and an error message
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState('');
   const [wantToAdd, setWantToAdd] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
-  const { data, setData } = useContext(TodoContext);
-  const [error, setError] = useState("");
+  // const { data, setData } = useContext(TodoContext);
+  const [error, setError] = useState('');
   // Get the current time using a custom hook
   const time = usegetTime();
   // Get the date from the time object
@@ -43,51 +45,49 @@ const AddInput = () => {
   useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {
       if (event.keyCode === 27) {
-        setInputValue("");
+        setInputValue('');
         setWantToAdd(true);
       }
     };
-    window.addEventListener("keydown", handleEsc);
+    window.addEventListener('keydown', handleEsc);
     return () => {
-      window.removeEventListener("keydown", handleEsc);
+      window.removeEventListener('keydown', handleEsc);
     };
-  }, [data]);
-
+  }, [ToDo]);
   // Handle changes in the input field value
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
     // Check if the input value is less than or equal to 10 characters and if there is any existing data, show an error message
     if (inputValue.length <= 10) {
-      console.log("write more");
-      if (data.length !== 0) {
+      console.log('write more');
+      if (ToDo.length !== 0) {
         setError(" Write 'DELETE' to delete every thing!!!");
       }
     } else {
-      setError("");
+      setError('');
     }
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     // Display a success message using a toast
     Toast.fire({
-      icon: "success",
-      title: "Item Added SuccessFully",
+      icon: 'success',
+      title: 'Item Added SuccessFully',
     });
 
     // Prevent the default form submission behavior
     e.preventDefault();
 
     // Check if the input value is empty after trimming whitespace
-    if (inputValue.trim() === "") {
+    if (inputValue.trim() === '') {
       // Display an error message using a toast if the input is empty
       Toast.fire({
-        icon: "error",
-        title: "write more than 10 character",
+        icon: 'error',
+        title: 'write more than 10 character',
       });
       return;
     }
 
     // Clear the input value after adding it to the data array
-    setInputValue("");
     setData((prevData: DataItem[]) => [
       ...prevData,
       {
@@ -97,6 +97,7 @@ const AddInput = () => {
         createdAt: date,
       },
     ]);
+    setInputValue('');
 
     // Check if the input value contains the word "DELETE"
     checkInput(inputValue);
@@ -108,7 +109,7 @@ const AddInput = () => {
       if (inputRef.current) {
         inputRef.current.focus();
       }
-    });
+    }, 2000);
     setWantToAdd(false);
   };
 
@@ -119,10 +120,10 @@ const AddInput = () => {
     // Test if the input value matches the regular expression
     if (regex.test(string)) {
       // If the input value is exactly "DELETE", display an error message and clear the data array
-      if (inputValue === "DELETE") {
+      if (inputValue === 'DELETE') {
         Toast.fire({
-          icon: "error",
-          title: "everything Deleted",
+          icon: 'error',
+          title: 'everything Deleted',
         });
         setData([]);
       }
@@ -134,7 +135,7 @@ const AddInput = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className={wantToAdd ? "hideform" : ""}>
+      <form onSubmit={handleSubmit} className={wantToAdd ? 'hideform' : ''}>
         <input
           type="text"
           className="inputlistitem"
@@ -146,7 +147,7 @@ const AddInput = () => {
         <p className="errorMessage">{error}</p>
       </form>
       <button
-        className={wantToAdd ? "addButton" : "hide"}
+        className={wantToAdd ? 'addButton' : 'hide'}
         onClick={handleClasses}
       >
         <svg
