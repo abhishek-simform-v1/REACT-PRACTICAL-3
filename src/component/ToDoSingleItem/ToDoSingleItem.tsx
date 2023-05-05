@@ -3,15 +3,20 @@ import "./ToDoSingleItem.css";
 import done from "./../../assets/complete.png";
 import notDone from "./../../assets/notcomplete.png";
 import deleteImg from "./../../assets/delete.png";
-import { useContext, useEffect, useRef, useState } from "react";
-import { TodoContext } from "../../context/Context";
-import { Toast } from "../AddUserInput/AddInput";
+import { useEffect, useState } from "react";
+import {
+  CompletedToDo,
+  deleteToDo,
+  Toast,
+  updateToDo,
+} from "../../slice/toDoSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 // Define the structure of each item in the to-do list
 interface DataItem {
   id: number;
   task: string;
-  completed: number;
+  completed: boolean;
   createdAt: number;
 }
 
@@ -22,36 +27,21 @@ type Props = {
 
 // Define the ToDoSingleItem component
 const ToDoSingleItem = ({ currentGivenData }: Props) => {
+  const data = useSelector((state: any) => state.todo.todos);
+  const dispatch = useDispatch();
   // Access the to-do list data from the TodoContext
-  const { data, setData } = useContext(TodoContext);
+  // const { data, setData } = useContext(TodoContext);
 
   // Define a state variable for the completed status of the current item
   const [completed, setCompleted] = useState(currentGivenData.completed);
 
-  // Handle the completion of a task
-  const handleCompleted = () => {
-    setCompleted(completed === 0 ? 1 : 0);
-  };
-
-  // Create a new updated to-do item with the updated completed status
-  const newUpdatedTodo = { ...currentGivenData, completed: completed };
-
-  // Map through the data to find the updated item and update it
-  const newData = data.map((currentData: DataItem) => {
-    if (currentData.id === currentGivenData.id) {
-      return newUpdatedTodo;
-    } else {
-      return currentData;
-    }
-  });
-
-  // Sort the tasks by completion status
-  function sortByCompleted(tasks: DataItem[]) {
-    return tasks.sort((a: DataItem, b: DataItem) => b.completed - a.completed);
-  }
-
   // Define state for the confirmation of task deletion
   const [confirmDelete, setConfirmDelete] = useState(false);
+
+  // Handle the completion of a task
+  const handleCompleted = () => {
+    setCompleted(completed ? false : true);
+  };
 
   // Handle mouse enter event to display delete confirmation
   const handleMouseEnter = () => {
@@ -64,7 +54,7 @@ const ToDoSingleItem = ({ currentGivenData }: Props) => {
   };
 
   // Define an array for modified to-do items
-  let modifiedItems: DataItem[];
+  // let modifiedItems: DataItem[];
   /* This function is responsible for deleting a task. It displays a toast message
 using the 'Toast' component and then modifies the array of tasks by removing the
 task that was deleted. The modified array is stored in local storage. */
@@ -77,20 +67,26 @@ task that was deleted. The modified array is stored in local storage. */
 
     // Find the index of the task to be deleted
     const index = data.findIndex(
-      (currentData) => currentData.id === currentGivenData.id
+      (currentData: DataItem) => currentData.id === currentGivenData.id
     );
     // Make a copy of the tasks array and remove the task to be deleted
     const modifiedItems = [...data];
     modifiedItems.splice(index, 1);
     // Store the modified array in local storage
-    setData(modifiedItems);
+
+    dispatch(deleteToDo(modifiedItems));
   };
 
   /* This effect hook sorts the task list by completion status every time the 'completed'
   state variable changes. */
 
   useEffect(() => {
-    setData(sortByCompleted(newData));
+    const updatedToDo = {
+      ...currentGivenData,
+      completed: completed,
+    };
+    dispatch(CompletedToDo(updatedToDo));
+    console.log(updatedToDo);
   }, [completed]);
 
   /* This component renders a single item of the to-do list. It displays the task
@@ -100,7 +96,7 @@ task that was deleted. The modified array is stored in local storage. */
     <div>
       <li
         key={currentGivenData.id}
-        className={completed === 1 ? "item notdone" : "item "}
+        className={completed === true ? "item notdone" : "item "}
         onClick={handleCompleted}
       >
         <p
@@ -115,7 +111,7 @@ task that was deleted. The modified array is stored in local storage. */
             <button onClick={handleCompleted}>
               <img
                 className="closeBtn"
-                src={completed === 1 ? done : notDone}
+                src={completed ? done : notDone}
                 alt="done"
               />
             </button>
@@ -132,7 +128,7 @@ task that was deleted. The modified array is stored in local storage. */
               ) : (
                 <img
                   className="closeBtn"
-                  src={completed === 1 ? done : notDone}
+                  src={completed === true ? done : notDone}
                   alt="done"
                 />
               )}

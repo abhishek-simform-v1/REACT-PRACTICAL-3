@@ -1,7 +1,7 @@
-import { configureStore } from '@reduxjs/toolkit';
-import toDoReducer from './../slice/toDoSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import toDoReducer from "./../slice/toDoSlice";
 export const store = configureStore({
-  reducer: { toDoReducer },
+  reducer: { todo: toDoReducer },
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

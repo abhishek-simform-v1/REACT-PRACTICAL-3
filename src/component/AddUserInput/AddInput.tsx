@@ -1,113 +1,82 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import { TodoContext } from '../../context/Context';
-import './AddInput.css';
-import Swal from 'sweetalert2';
-import usegetTime from '../../hooks/usegetTime';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect, useRef, useState } from "react";
+import "./AddInput.css";
+import { useSelector, useDispatch } from "react-redux";
+import { addTodo, deleteToDo, Toast } from "../../slice/toDoSlice";
 interface DataItem {
   id: number;
   task: string;
-  completed: number;
+  completed: boolean;
   createdAt: number;
 }
 
-// Define a Toast notification using SweetAlert library with specific configurations
-export const Toast = Swal.mixin({
-  toast: true,
-  position: 'bottom-start',
-  showConfirmButton: false,
-  timer: 3000,
-  timerProgressBar: true,
-  didOpen: (toast) => {
-    // Pause the timer when the user hovers over the notification
-    toast.addEventListener('mouseenter', Swal.stopTimer);
-    // Resume the timer when the user leaves the notification
-    toast.addEventListener('mouseleave', Swal.resumeTimer);
-  },
-});
-
 // Define a functional component for an input field with add functionality
 const AddInput = () => {
-  const ToDo = useSelector((state: RootState) => state.ToDo);
+  const ToDo = useSelector((state: any) => state.todo.todos);
   const dispatch = useDispatch();
-  // Define the state variables for the input field, whether the user wants to add an item or not, and an error message
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
   const [wantToAdd, setWantToAdd] = useState(true);
   const inputRef = useRef<HTMLInputElement>(null);
-  // const { data, setData } = useContext(TodoContext);
-  const [error, setError] = useState('');
-  // Get the current time using a custom hook
-  const time = usegetTime();
-  // Get the date from the time object
-  const date: number = time[0].getDate;
+  const [error, setError] = useState("");
 
-  // Add an event listener to the Esc key to reset the input field if the user wants to cancel the add operation
   useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {
       if (event.keyCode === 27) {
-        setInputValue('');
+        setInputValue("");
         setWantToAdd(true);
       }
     };
-    window.addEventListener('keydown', handleEsc);
+    window.addEventListener("keydown", handleEsc);
     return () => {
-      window.removeEventListener('keydown', handleEsc);
+      window.removeEventListener("keydown", handleEsc);
     };
   }, [ToDo]);
-  // Handle changes in the input field value
+
+  // // Handle changes in the input field value
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
     // Check if the input value is less than or equal to 10 characters and if there is any existing data, show an error message
     if (inputValue.length <= 10) {
-      console.log('write more');
+      console.log("write more");
       if (ToDo.length !== 0) {
         setError(" Write 'DELETE' to delete every thing!!!");
       }
     } else {
-      setError('');
+      setError("");
     }
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    // Display a success message using a toast
-    Toast.fire({
-      icon: 'success',
-      title: 'Item Added SuccessFully',
-    });
-
-    // Prevent the default form submission behavior
+    // setInputValue(inputRef.current!.value);
     e.preventDefault();
 
-    // Check if the input value is empty after trimming whitespace
-    if (inputValue.trim() === '') {
-      // Display an error message using a toast if the input is empty
-      Toast.fire({
-        icon: 'error',
-        title: 'write more than 10 character',
-      });
+    if (inputValue.trim() === "") {
       return;
     }
 
-    // Clear the input value after adding it to the data array
-    setData((prevData: DataItem[]) => [
-      ...prevData,
-      {
+    dispatch(
+      addTodo({
         id: Math.trunc(Math.random() * 89345),
         task: inputValue.trim(),
-        completed: 0,
-        createdAt: date,
-      },
-    ]);
-    setInputValue('');
+        completed: false,
+        createdAt: new Date().getDate(),
+      })
+    );
 
-    // Check if the input value contains the word "DELETE"
+    setInputValue("");
+    // inputRef.current!.value = "";
     checkInput(inputValue);
   };
 
   const handleClasses = () => {
     // Focus on the input field and hide the form
+
     setTimeout(() => {
       if (inputRef.current) {
         inputRef.current.focus();
+      }
+      if (document.activeElement === inputRef.current) {
+        console.log("element has focus");
+      } else {
+        console.log("element does NOT have focus");
       }
     }, 2000);
     setWantToAdd(false);
@@ -120,12 +89,12 @@ const AddInput = () => {
     // Test if the input value matches the regular expression
     if (regex.test(string)) {
       // If the input value is exactly "DELETE", display an error message and clear the data array
-      if (inputValue === 'DELETE') {
+      if (inputValue === "DELETE") {
         Toast.fire({
-          icon: 'error',
-          title: 'everything Deleted',
+          icon: "error",
+          title: "everything Deleted",
         });
-        setData([]);
+        dispatch(deleteToDo([]));
       }
     } else {
       // If the input value doesn't match the regular expression, return false
@@ -135,7 +104,7 @@ const AddInput = () => {
 
   return (
     <>
-      <form onSubmit={handleSubmit} className={wantToAdd ? 'hideform' : ''}>
+      <form onSubmit={handleSubmit} className={wantToAdd ? "hideform" : ""}>
         <input
           type="text"
           className="inputlistitem"
@@ -147,7 +116,7 @@ const AddInput = () => {
         <p className="errorMessage">{error}</p>
       </form>
       <button
-        className={wantToAdd ? 'addButton' : 'hide'}
+        className={wantToAdd ? "addButton" : "hide"}
         onClick={handleClasses}
       >
         <svg
