@@ -1,13 +1,6 @@
 // Importing necessary modules from React
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useReducer,
-  useRef,
-  useState,
-} from 'react';
-import { ReactNode } from 'react';
+import React, { createContext, useEffect, useState } from "react";
+import { ReactNode } from "react";
 
 // Defining the props interface for the "Context" component
 interface Props {
@@ -34,8 +27,8 @@ export const TodoContext = createContext<{
 
 // Function to check if the to-do items in local storage have expired
 function checkSessionExpiry(storageKey: string) {
-  const data = JSON.parse(localStorage.getItem(storageKey) || '[]'); // Parsing the data from local storage
-  const currentDate = new Date().getDate(); // Getting the current date
+  const data = JSON.parse(localStorage.getItem(storageKey) || "[]"); // Parsing the data from local storage
+  let currentDate = new Date().getDate(); // Getting the current date
 
   // Checking each item in the data to see if it was created on the current date
   data.map((items: DataItem) => {
@@ -53,12 +46,12 @@ const Context = ({ children }: Props) => {
 
   // Updating the data in local storage whenever the "data" state variable changes
   useEffect(() => {
-    localStorage.setItem('data', JSON.stringify(data));
+    localStorage.setItem("data", JSON.stringify(data));
   }, [data]);
 
   // Function to initialize the data state variable
   function init() {
-    const localdata = checkSessionExpiry('data');
+    const localdata = checkSessionExpiry("data");
 
     if (localdata !== null) {
       return localdata; // Returning the data from local storage if it exists
